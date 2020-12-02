@@ -102,3 +102,9 @@ Router::scope('/', function (RouteBuilder $routes) {
  * });
  * ```
  */
+
+Router::prefix('admin', function (RouteBuilder $routes) {
+//    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+//    $routes->connect('/pages/*', ['controller' => 'Pages', 'action' => 'display']);
+    $routes->fallbacks(DashedRoute::class);
+});
