@@ -28,8 +28,8 @@
                     <td class="d-none d-sm-table-cell"><?= h($user->email) ?></td>
                     <td class="d-none d-lg-table-cell"><?= h($user->created) ?></td>
                     <td class="text-center">
-                        <?= $this->Html->link(__('Consultar'), ['action' => 'view', $user->id], ['class' => 'btn btn-outline-info btn-sm']) ?>
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
+                        <?= $this->Html->link(__('Visualizar'), ['action' => 'view', $user->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
+                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
                         <?= $this->Form->postLink(__('Deletar'), ['action' => 'delete', $user->id], ['class' => 'btn btn-outline-danger btn-sm', 'confirm' => __('Você tem certeza que deseja excluir? # {0}?', $user->id)]) ?>
                     </td>
                 </tr>            

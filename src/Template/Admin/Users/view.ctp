@@ -1,3 +1,17 @@
+<div class="d-flex">
+    <div class="mr-auto p-2">
+        <h2 class="display-4 titulo">Usuário</h2>
+    </div>
+    <div class="p-2">
+        <span class="d-none d-md-block">
+            <?= $this->Html->link(__('Listar'), ['action' => 'index'], ['class' => 'btn btn-outline-info btn-sm']) ?>            
+            <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>            
+            <?= $this->Html->link(__('Apagar'), ['action' => 'delete', $user->id], ['class' => 'btn btn-outline-danger btn-sm']) ?>                        
+        </span>
+    </div>
+</div><hr>
+
+
 <?php
 /**
  * @var \App\View\AppView $this
