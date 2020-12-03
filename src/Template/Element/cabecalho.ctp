@@ -18,12 +18,12 @@
                         echo $this->Html->image('../files/user/default.png', ['class' => 'rounded-circle', 'width' => '20', 'height' => '20']);
                     }
                     ?>
-                    
+
                     &nbsp;<span class="d-none d-sm-inline"><?= current(str_word_count($perfilUser['name'], 2)) ?></span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <!--                        <a class="dropdown-item" href="#"><i class="fas fa-user"></i> Perfil</a>                        ;;-->
-                    <a class="dropdown-item" href="/admin/users/logout"><i class="fas fa-sign-out-alt"></i> Sair</a>                        
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">                    
+                    <?= $this->Html->link('<i class="fas fa-user"></i> Perfil', ['controller' => 'users', 'action' => 'perfil'], ['class' => 'dropdown-item text-primary', 'escape' => false]) ?>                    
+                    <?= $this->Html->link('<i class="fas fa-sign-out-alt"></i> Sair', ['controller' => 'users', 'action' => 'logout'], ['class' => 'dropdown-item text-danger', 'escape' => false]) ?>                    
                 </div>
             </li>
         </ul>                
