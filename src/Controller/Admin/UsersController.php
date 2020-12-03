@@ -84,7 +84,7 @@ class UsersController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('Não foi possivel editar o usuário.'));
+            $this->Flash->danger(__('Não foi possivel editar o usuário.'));
         }
         $this->set(compact('user'));
     }
