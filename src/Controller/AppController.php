@@ -1,4 +1,5 @@
 <?php
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -12,6 +13,7 @@
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -25,8 +27,7 @@ use Cake\Event\Event;
  *
  * @link https://book.cakephp.org/3.0/en/controllers.html#the-app-controller
  */
-class AppController extends Controller
-{
+class AppController extends Controller {
 
     /**
      * Initialization hook method.
@@ -37,8 +38,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    public function initialize()
-    {
+    public function initialize() {
         parent::initialize();
 
         $this->loadComponent('RequestHandler', [
@@ -46,15 +46,15 @@ class AppController extends Controller
         ]);
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
-            'loginRedirect' => [
+            'loginRedirect'  => [
                 'controller' => 'welcome',
-                'action' => 'index'
+                'action'     => 'index'
             ],
             'logoutRedirect' => [
                 'controller' => 'users',
-                'action' => 'login'
+                'action'     => 'login'
             ],
-            'authError' => false            
+            'authError'      => false
         ]);
 
         /*
@@ -63,21 +63,24 @@ class AppController extends Controller
          */
         //$this->loadComponent('Security');
     }
-    
-    public function beforeRender(Event $event)
-    {        
+
+    public function beforeRender(Event $event) {
         $prefix = null;
-        if($this->request->getParam(['prefix']) !== null){
+        if ($this->request->getParam(['prefix']) !== null) {
             $prefix = $this->request->getParam(['prefix']);
-        }        
-        
-        if($prefix == 'admin') {                                          
-           if($this->request->getParam(['action']) !== null AND $this->request->getParam(['action']) == 'login') {
-            $this->viewBuilder()->setLayout('login');
-           }else{            
-            $this->viewBuilder()->setLayout('admin');
-           }
         }
-        
+
+        if ($prefix == 'admin') {
+            if ($this->request->getParam(['action']) !== null AND $this->request->getParam(['action']) == 'login') {
+                $this->viewBuilder()->setLayout('login');
+            }
+            else {
+                $perfilUser = $this->Auth->user();
+                $this->set(compact('perfilUser'));
+                
+                $this->viewBuilder()->setLayout('admin');
+            }
+        }
     }
+
 }
