@@ -2,11 +2,11 @@
     <div class="mr-auto p-2">
         <h2 class="display-4 titulo">Listar Usuários</h2>
     </div>
-    <a href="cadastrar.html">
-        <div class="p-2">
-            <?= $this->Html->link(__('Cadastrar'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-outline-success btn-sm']); ?>
-        </div>
-    </a>
+
+    <div class="p-2">
+        <?= $this->Html->link(__('Cadastrar'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-outline-success btn-sm']); ?>
+    </div>
+
 </div>
 <?= $this->Flash->render() ?>  
 <div class="table-responsive">
@@ -28,16 +28,16 @@
                     <td class="d-none d-sm-table-cell"><?= h($user->email) ?></td>
                     <td class="d-none d-lg-table-cell"><?= h($user->created) ?></td>
                     <td class="text-center">
-                        <?= $this->Html->link(__('Consultar'), ['action' => 'view', $user->id]) ?>
-                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->id]) ?>
-                        <?= $this->Form->postLink(__('Deletar'), ['action' => 'delete', $user->id], ['confirm' => __('Você tem certeza que deseja excluir? # {0}?', $user->id)]) ?>
+                        <?= $this->Html->link(__('Consultar'), ['action' => 'view', $user->id], ['class' => 'btn btn-outline-info btn-sm']) ?>
+                        <?= $this->Html->link(__('Editar'), ['action' => 'edit', $user->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
+                        <?= $this->Form->postLink(__('Deletar'), ['action' => 'delete', $user->id], ['class' => 'btn btn-outline-danger btn-sm', 'confirm' => __('Você tem certeza que deseja excluir? # {0}?', $user->id)]) ?>
                     </td>
                 </tr>            
             <?php endforeach; ?>
         </tbody>
     </table>
-    
+
     <?= $this->element('pagination'); ?>
-    
+
 </div>
 

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -20,16 +21,15 @@ use Cake\Validation\Validator;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class UsersTable extends Table
-{
+class UsersTable extends Table {
+
     /**
      * Initialize method
      *
      * @param array $config The configuration for the Table.
      * @return void
      */
-    public function initialize(array $config)
-    {
+    public function initialize(array $config) {
         parent::initialize($config);
 
         $this->setTable('users');
@@ -45,30 +45,39 @@ class UsersTable extends Table
      * @param \Cake\Validation\Validator $validator Validator instance.
      * @return \Cake\Validation\Validator
      */
-    public function validationDefault(Validator $validator)
-    {
+    public function validationDefault(Validator $validator) {
         $validator
-            ->integer('id')
-            ->allowEmptyString('id', null, 'create');
+                ->integer('id')
+                ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('name')
-            ->maxLength('name', 255)
-            ->allowEmptyString('name');
+                ->scalar('name')
+                ->maxLength('name', 255)
+                ->requirePresence('name', 'create')
+                ->notEmpty('name', __('Campo obrigatório'));
 
         $validator
-            ->email('email')
-            ->allowEmptyString('email');
+                ->email('email')
+                ->requirePresence('email', 'create')
+                ->notEmpty('email', __('Campo obrigatório'));
 
         $validator
-            ->scalar('username')
-            ->maxLength('username', 255)
-            ->allowEmptyString('username');
+                ->scalar('username')
+                ->maxLength('username', 255)
+                ->requirePresence('username', 'create')
+                ->notEmpty('username', __('Campo obrigatório'));
 
         $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->allowEmptyString('password');
+        ->scalar('password')
+        ->maxLength('password', 255)
+        ->requirePresence('password', 'create')
+        ->notEmpty('password',__('Campo obrigatório'))
+        ->add('password', [
+            'length' => [
+                'rule' => ['minLength', 06],
+                'message' => 'Senha dever ter no mínimo 06 digitos',
+            ]
+        ]);
 
         return $validator;
     }
@@ -80,11 +89,11 @@ class UsersTable extends Table
      * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
      * @return \Cake\ORM\RulesChecker
      */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->isUnique(['email']));
-        $rules->add($rules->isUnique(['username']));
+    public function buildRules(RulesChecker $rules) {
+        $rules->add($rules->isUnique(['email'], 'Este e-mail já está cadastrado'));
+        $rules->add($rules->isUnique(['username'], 'Este usuário já está sendo utilizado'));
 
         return $rules;
     }
+
 }
