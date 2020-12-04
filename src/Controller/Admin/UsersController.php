@@ -194,6 +194,38 @@ class UsersController extends AppController {
             'contain' => [],
         ]);
 
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            //var_dump($this->request->getData());
+            $nomeImg = $this->request->getData()['imagem']['name'];
+            $imgTmp  = $this->request->getData()['imagem']['tmp_name'];
+
+            $user         = $this->Users->newEntity();
+            $user->id     = $user_id;
+            $user->imagem = $nomeImg;
+
+            $destino = "files\user\\" . $user_id . '\\' . $nomeImg;
+
+            if (move_uploaded_file($imgTmp, WWW_ROOT . $destino)) {
+                if ($this->Users->save($user)) {
+
+                    // Só executa se o usuario logado for o usuario quem esta alterando a imagem
+                    if ($this->Auth->user('id') === $user->id) {
+                        $user = $this->Users->get($user_id, [
+                            'contain' => []
+                        ]);
+                        $this->Auth->setUser($user);
+                    }
+
+                    $this->Flash->success(__('Imagem alteda com sucesso'));
+
+                    return $this->redirect(['controller' => 'Users', 'action' => 'perfil']);
+                }
+                else {
+                    $this->Flash->danger(__('Não foi possivel alterar a imagem'));
+                }
+            }
+        }
+
         $this->set(compact('user'));
     }
 
