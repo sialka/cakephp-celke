@@ -21,18 +21,22 @@
         </div>
     </div>
 </div><hr>
-<figure class="figure">
-    <?php
-    if (!empty($perfilUser['imagem'])) {
-        echo $this->Html->image('../files/user/' . $perfilUser['id'] . '/' . $perfilUser['imagem'], ['class' => 'rounded', 'width' => '100', 'height' => '100']);
-    }
-    else {
-        echo $this->Html->image('../files/user/default.png', ['class' => 'rounded-circle', 'width' => '100', 'height' => '100']);
-    }
-    ?>    
-</figure>
 <?= $this->Flash->render() ?>  
 <dl class="row">
+    <dt class="col-sm-3">Foto</dt>
+    <dd class="col-sm-9 border-bottom w-25 p-1">
+        <figure class="figure">
+            <?php
+            if (!empty($perfilUser['imagem'])) {
+                echo $this->Html->image('../files/user/' . $perfilUser['id'] . '/' . $perfilUser['imagem'], ['class' => 'rounded', 'width' => '100', 'height' => '100']);
+            }
+            else {
+                echo $this->Html->image('../files/user/default.png', ['class' => 'rounded-circle', 'width' => '100', 'height' => '100']);
+            }
+            ?>    
+        </figure>        
+        <?= $this->Html->link('<i class="fas fa-pencil-alt"></i>', ['controller' => 'Users', 'action' => 'alterarFotoPerfil'], ['class' => 'btn btn-link', 'escape' => false]) ?>
+    </dd>
     <dt class="col-sm-3">ID</dt>
     <dd class="col-sm-9 border-bottom w-25 p-1"><?= $this->Number->format($user['id']) ?></dd>
 
