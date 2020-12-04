@@ -47,12 +47,12 @@ class AppController extends Controller {
         $this->loadComponent('Flash');
         $this->loadComponent('Auth', [
             'loginRedirect'  => [
-                'controller' => 'welcome',
+                'controller' => 'Welcome',
                 'action'     => 'index'
             ],
             'logoutRedirect' => [
-                'controller' => 'users',
-                'action'     => 'login'
+                'controller' => 'Users',
+                'action'     => 'login',                
             ],
             'authError'      => false
         ]);
@@ -77,7 +77,7 @@ class AppController extends Controller {
             else {
                 $perfilUser = $this->Auth->user();
                 $this->set(compact('perfilUser'));
-                
+
                 $this->viewBuilder()->setLayout('admin');
             }
         }

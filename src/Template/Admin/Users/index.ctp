@@ -29,9 +29,9 @@
                     <td class="d-none d-lg-table-cell"><?= h($user->created) ?></td>
                     <td class="text-center">
                         <span class="d-none d-md-block">        
-                            <?= $this->Html->link(__('Visualizar'), ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'btn btn-outline-primary btn-sm']) ?>
-                            <?= $this->Html->link(__('Editar'), ['controller' => 'users', 'action' => 'edit', $user->id], ['class' => 'btn btn-outline-warning btn-sm']) ?>
-                            <?= $this->Form->postLink(__('Deletar'), ['controller' => 'users', 'action' => 'delete', $user->id], ['class' => 'btn btn-outline-danger btn-sm', 'confirm' => __('Realmente deseja excluir o usuario # {0}?', $user->name)]) ?>
+                            <?= $this->Html->link('<i class="fas fa-plus"></i>', ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'btn btn-link btn-sm text-primary', 'escape' => false]) ?>
+                            <?= $this->Html->link('<i class="fas fa-edit"></i>', ['controller' => 'users', 'action' => 'edit', $user->id], ['class' => 'btn btn-link btn-sm text-warning', 'escape' => false]) ?>
+                            <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['controller' => 'users', 'action' => 'delete', $user->id], ['class' => 'btn btn-link btn-sm text-danger', 'escape' => false, 'confirm' => __('Realmente deseja excluir o usuario # {0}?', $user->name)]) ?>
                         </span>
                         <div class="dropdown d-block d-md-none">
                             <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
