@@ -19,13 +19,11 @@ class UsersController extends AppController {
      * @return \Cake\Http\Response|null
      */
     public function index() {
-
         $this->paginate = [
             'limit' => 40
         ];
 
         $users = $this->paginate($this->Users);
-
         $this->set(compact('users'));
     }
 
@@ -190,53 +188,19 @@ class UsersController extends AppController {
 
     public function alterarFotoPerfil() {
         $user_id = $this->Auth->user('id');
-        $user    = $this->Users->get($user_id, [
-            'contain' => [],
-        ]);
+        $user    = $this->Users->get($user_id);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            //var_dump($this->request->getData());
-            $nomeImg = $this->request->getData()['imagem']['name'];
-            $imgTmp  = $this->request->getData()['imagem']['tmp_name'];
-
-            $imagemAntiga = $user->imagem;
-            
             $user         = $this->Users->newEntity();
-            $user->id     = $user_id;
-            $user->imagem = $nomeImg;
+            $user         = $this->Users->patchEntity($user, $this->request->data);
+            $destino      = WWW_ROOT . "files" . DS . "user" . DS . $user_id . DS;
+            $user->imagem = $this->Users->singleUpload($this->request->getData()['imagem'], $destino);
 
-            
-
-            $destino = "files\user\\" . $user_id . '\\' . $nomeImg;
-
-            
-
-            if (move_uploaded_file($imgTmp, WWW_ROOT . $destino)) {
-                // Excluir a imagem antiga
-
-                //unlink(WWW_ROOT . "files\user\\" . $user_id . "\\" . $imagemAntiga);
-                
-                if (($imagemAntiga !== null) AND ($imagemAntiga !== $user->imagem)) {
-
-                    unlink(WWW_ROOT . "files\user\\" . $user_id . "\\" . $imagemAntiga);
-                }
-
-
-                if ($this->Users->save($user)) {
-
-                    // Só executa se o usuario logado for o usuario quem esta alterando a imagem
-                    if ($this->Auth->user('id') === $user->id) {
-                        $user = $this->Users->get($user_id, [
-                            'contain' => []
-                        ]);
-                        $this->Auth->setUser($user);
-                    }
-                    $this->Flash->success(__('Imagem alterada com sucesso'));
-                    return $this->redirect(['controller' => 'Users', 'action' => 'perfil']);
-                }
-                else {
-                    $this->Flash->danger(__('Não foi possivel alterar a imagem'));
-                }
+            if ($user->imagem) {
+                $this->Flash->success(__('Imagem alterada com sucesso'));
+            }
+            else {
+                $this->Flash->danger(__('Não foi possivel alterar a imagem'));
             }
         }
 
