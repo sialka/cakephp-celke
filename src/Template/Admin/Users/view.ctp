@@ -6,7 +6,10 @@
 ?>
 <div class="d-flex">
     <div class="mr-auto p-2">
-        <h2 class="display-4 titulo">Usuário</h2>
+        <h2 class="display-4 titulo">
+            <i class="fa fa-user text-primary"></i>
+            Informações do Usuário
+        </h2>
     </div>
     <div class="p-2">
         <span class="d-none d-md-block">

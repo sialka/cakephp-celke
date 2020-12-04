@@ -1,6 +1,9 @@
 <div class="d-flex">
     <div class="mr-auto p-2">
-        <h2 class="display-4 titulo">Cadastrar Usuário</h2>
+        <h2 class="display-4 titulo">
+            <i class="fa fa-user text-primary"></i>
+            Cadastrar Usuário
+        </h2>
     </div>
 
     <div class="p-2">
@@ -33,5 +36,5 @@
     <span class="text-danger">* </span>Campo obrigatório
 </p>
 
-<?= $this->Form->button(__('Cadastrar'), ['class' => 'btn btn-success']) ?>
+<?= $this->Form->button('<i class="fa fa-save"></i> Cadastrar', ['class' => 'btn btn-warning', 'escape' => false]) ?>
 <?= $this->Form->end() ?>

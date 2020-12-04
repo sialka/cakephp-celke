@@ -1,6 +1,9 @@
 <div class="d-flex">
     <div class="mr-auto p-2">
-        <h2 class="display-4 titulo">Perfil</h2>
+        <h2 class="display-4 titulo">
+            <i class="fa fa-user text-primary"></i>
+            Perfil
+        </h2>
     </div>
     <div class="p-2">
         <span class="d-none d-md-block">            

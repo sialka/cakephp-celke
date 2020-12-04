@@ -1,10 +1,13 @@
 <div class="d-flex">
     <div class="mr-auto p-2">
-        <h2 class="display-4 titulo">Listar Usuários</h2>
+        <h2 class="display-4 titulo">
+            <i class="fa fa-list text-primary"></i>
+            Lista de Usuários
+        </h2>
     </div>
 
     <div class="p-2">
-        <?= $this->Html->link(__('Cadastrar'), ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-outline-success btn-sm']); ?>
+        <?= $this->Html->link('<i class="fa fa-plus"></i> Novo Usuário', ['controller' => 'users', 'action' => 'add'], ['class' => 'btn btn-outline-success btn-sm', 'escape' => false]); ?>
     </div>
 
 </div>
@@ -29,7 +32,7 @@
                     <td class="d-none d-lg-table-cell"><?= h($user->created) ?></td>
                     <td class="text-center">
                         <span class="d-none d-md-block">        
-                            <?= $this->Html->link('<i class="fas fa-plus"></i>', ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'btn btn-link btn-sm text-primary', 'escape' => false]) ?>
+                            <?= $this->Html->link('<i class="fas fa-search"></i>', ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'btn btn-link btn-sm text-primary', 'escape' => false]) ?>
                             <?= $this->Html->link('<i class="fas fa-edit"></i>', ['controller' => 'users', 'action' => 'edit', $user->id], ['class' => 'btn btn-link btn-sm text-warning', 'escape' => false]) ?>
                             <?= $this->Html->link('<i class="fas fa-key"></i>', ['controller' => 'users', 'action' => 'editSenha', $user->id], ['class' => 'btn btn-link btn-sm text-info', 'escape' => false]) ?>
                             <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['controller' => 'users', 'action' => 'delete', $user->id], ['class' => 'btn btn-link btn-sm text-danger', 'escape' => false, 'confirm' => __('Realmente deseja excluir o usuario # {0}?', $user->name)]) ?>

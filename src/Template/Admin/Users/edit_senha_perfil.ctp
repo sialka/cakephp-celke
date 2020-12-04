@@ -1,6 +1,9 @@
 <div class="d-flex">
     <div class="mr-auto p-2">
-        <h2 class="display-4 titulo">Editar Senha</h2>
+        <h2 class="display-4 titulo">
+            <i class="fa fa-user text-primary"></i>
+            Editar Senha
+        </h2>
     </div>
     <div class="p-2">
         <span class="d-none d-md-block">
@@ -29,5 +32,5 @@
 <p>
     <span class="text-danger">* </span>Campo obrigatório
 </p>
-<?= $this->Form->button(__('Salvar'), ['class' => 'btn btn-warning']) ?>
+<?= $this->Form->button('<i class="fa fa-save"></i> Salvar', ['class' => 'btn btn-warning', 'escape' => false]) ?>
 <?= $this->Form->end() ?>
