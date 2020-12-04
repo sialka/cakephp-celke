@@ -79,6 +79,7 @@ class AppController extends Controller {
                 //$perfilUser = $this->Auth->user();
                 $user       = TableRegistry::get('Users');
                 $perfilUser = $user->getUserDados($this->Auth->user('id'));
+                
                 $this->set(compact('perfilUser'));
 
                 $this->viewBuilder()->setLayout('admin');

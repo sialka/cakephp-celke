@@ -13,15 +13,15 @@
                 <!--<img class = "rounded-circle" src = "imagem/icon.png" width = "20" height = "20">;
                     -->
                     <?php
-                    if (!empty($perfilUser['imagem'])) {
-                        echo $this->Html->image('../files/user/' . $perfilUser['id'] . '/' . $perfilUser['imagem'], ['class' => 'rounded-circle', 'width' => '20', 'height' => '20']);
+                    if (!empty($perfilUser->imagem)) {
+                        echo $this->Html->image('../files/user/' . $perfilUser->id . '/' . $perfilUser->imagem, ['class' => 'rounded-circle', 'width' => '20', 'height' => '20']);
                     }
                     else {
                         echo $this->Html->image('../files/user/default.png', ['class' => 'rounded-circle', 'width' => '20', 'height' => '20']);
                     }
                     ?>
 
-                    &nbsp;<span class="d-none d-sm-inline"><?= current(str_word_count($perfilUser['name'], 2)) ?></span>
+                    &nbsp;<span class="d-none d-sm-inline"><?= current(str_word_count($perfilUser->name, 2)) ?></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">                    
                     <?= $this->Html->link('<i class="fas fa-user"></i> Perfil', ['controller' => 'users', 'action' => 'perfil'], ['class' => 'dropdown-item text-primary', 'escape' => false]) ?>                    
