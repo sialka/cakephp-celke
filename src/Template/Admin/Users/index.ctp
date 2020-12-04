@@ -31,6 +31,7 @@
                         <span class="d-none d-md-block">        
                             <?= $this->Html->link('<i class="fas fa-plus"></i>', ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'btn btn-link btn-sm text-primary', 'escape' => false]) ?>
                             <?= $this->Html->link('<i class="fas fa-edit"></i>', ['controller' => 'users', 'action' => 'edit', $user->id], ['class' => 'btn btn-link btn-sm text-warning', 'escape' => false]) ?>
+                            <?= $this->Html->link('<i class="fas fa-key"></i>', ['controller' => 'users', 'action' => 'editSenha', $user->id], ['class' => 'btn btn-link btn-sm text-info', 'escape' => false]) ?>
                             <?= $this->Form->postLink('<i class="fas fa-trash"></i>', ['controller' => 'users', 'action' => 'delete', $user->id], ['class' => 'btn btn-link btn-sm text-danger', 'escape' => false, 'confirm' => __('Realmente deseja excluir o usuario # {0}?', $user->name)]) ?>
                         </span>
                         <div class="dropdown d-block d-md-none">
@@ -40,6 +41,7 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
                                 <?= $this->Html->link(__('Visualizar'), ['controller' => 'users', 'action' => 'view', $user->id], ['class' => 'dropdown-item']) ?>
                                 <?= $this->Html->link(__('Editar'), ['controller' => 'users', 'action' => 'edit', $user->id], ['class' => 'dropdown-item']) ?>
+                                <?= $this->Html->link(__('Senha'), ['controller' => 'users', 'action' => 'editSenha', $user->id], ['class' => 'dropdown-item']) ?>
                                 <?= $this->Form->postLink(__('Deletar'), ['controller' => 'users', 'action' => 'delete', $user->id], ['class' => 'dropdown-item', 'confirm' => __('Realmente deseja excluir o usuario # {0}?', $user->name)]) ?>
                             </div>
                         </div>

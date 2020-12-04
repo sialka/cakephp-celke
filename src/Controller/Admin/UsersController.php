@@ -139,7 +139,7 @@ class UsersController extends AppController {
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                if($this->Auth->user('id')===$user->id){
+                if ($this->Auth->user('id') === $user->id) {
                     $data = $user->toArray();
                     $this->Auth->setUser($data);
                 }
@@ -158,7 +158,7 @@ class UsersController extends AppController {
         $user    = $this->Users->get($user_id, [
             'contain' => [],
         ]);
-        
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -171,5 +171,21 @@ class UsersController extends AppController {
 
         $this->set(compact('user'));
     }
-    
+
+    public function editSenha($id = null) {
+        $user = $this->Users->get($id, [
+            'contain' => [],
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Senha alterada com sucesso.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->danger(__('Não foi possivel alterar a senha.'));
+        }
+        $this->set(compact('user'));
+    }
+
 }
