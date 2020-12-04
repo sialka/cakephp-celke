@@ -133,7 +133,7 @@ class UsersController extends AppController {
         $user    = $this->Users->get($user_id, [
             'contain' => [],
         ]);
-
+        
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
@@ -187,17 +187,26 @@ class UsersController extends AppController {
     }
 
     public function alterarFotoPerfil() {
-        $user_id = $this->Auth->user('id');
-        $user    = $this->Users->get($user_id);
+        $user_id      = $this->Auth->user('id');
+        $user         = $this->Users->get($user_id);
+        $imagemAntiga = $user->imagem;
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user         = $this->Users->newEntity();
+            
             $user         = $this->Users->patchEntity($user, $this->request->data);
             $destino      = WWW_ROOT . "files" . DS . "user" . DS . $user_id . DS;
+            $user         = $this->Users->newEntity();
             $user->imagem = $this->Users->singleUpload($this->request->getData()['imagem'], $destino);
 
             if ($user->imagem) {
-                $this->Flash->success(__('Imagem alterada com sucesso'));
+                $user->id = $user_id;
+                if ($this->Users->save($user)) {
+                    if (($imagemAntiga !== null) AND ($imagemAntiga !== $user->imagem)) {
+                        unlink($destino . $imagemAntiga);
+                    }
+                    $this->Flash->success(__('Imagem alterada com sucesso'));
+                    return $this->redirect(['controller' => 'Users', 'action' => 'perfil']);
+                }
             }
             else {
                 $this->Flash->danger(__('Não foi possivel alterar a imagem'));

@@ -18,6 +18,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\TableRegistry;
 
 /**
  * Application Controller
@@ -52,7 +53,7 @@ class AppController extends Controller {
             ],
             'logoutRedirect' => [
                 'controller' => 'Users',
-                'action'     => 'login',                
+                'action'     => 'login',
             ],
             'authError'      => false
         ]);
@@ -75,7 +76,9 @@ class AppController extends Controller {
                 $this->viewBuilder()->setLayout('login');
             }
             else {
-                $perfilUser = $this->Auth->user();
+                //$perfilUser = $this->Auth->user();
+                $user       = TableRegistry::get('Users');
+                $perfilUser = $user->getUserDados($this->Auth->user('id'));
                 $this->set(compact('perfilUser'));
 
                 $this->viewBuilder()->setLayout('admin');

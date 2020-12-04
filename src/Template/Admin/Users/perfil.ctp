@@ -26,7 +26,7 @@
     <dt class="col-sm-3">Foto</dt>
     <dd class="col-sm-9 border-bottom w-25 p-1">
         <figure class="figure">
-            <?php
+            <?php            
             if (!empty($perfilUser['imagem'])) {
                 echo $this->Html->image('../files/user/' . $perfilUser['id'] . '/' . $perfilUser['imagem'], ['class' => 'rounded', 'width' => '100', 'height' => '100']);
             }
