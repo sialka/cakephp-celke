@@ -2,7 +2,9 @@
     <a class = "sidebar-toggle text-light mr-3">
         <span class = "navbar-toggler-icon"></span>
     </a>
-    <a class = "navbar-brand" href = "#">Admin</a>
+    <a class = "navbar-brand" href = "#">
+        <?= $this->Html->image('app.png', ['class' => 'rounded-circle', 'width' => '32', 'height' => '32']); ?>
+    </a>
 
     <div class = "collapse navbar-collapse">
         <ul class = "navbar-nav ml-auto">
